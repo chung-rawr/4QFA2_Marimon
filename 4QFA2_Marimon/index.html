@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Multiplication Table Generator</title>
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  th {
+    background-color: #f4f4f4;
+  }
+</style>
+</head>
+<body>
+  <h2>Multiplication Table Generator</h2>
+  <label for="startNum">Start Number (2-10):</label>
+  <input type="number" id="startNum" value="2"><br>
+  <label for="endNum">End Number (2-10):</label>
+  <input type="number" id="endNum" value="10"><br><br>
+  <button onclick="generateTable()">Generate Table</button>
+
+  <div id="tableDiv"></div>
+
+  <script>
+    function generateTable() {
+      const startNum = parseInt(document.getElementById('startNum').value);
+      const endNum = parseInt(document.getElementById('endNum').value);
+      
+      if (startNum < 2 || startNum > 10 || endNum < 2 || endNum > 10) {
+        alert("Please enter numbers between 2 and 10");
+        return;
+      }
+      
+      let tableHTML = '<table><tr><th>x</th>';
+      for (let i = startNum; i <= endNum; i++) {
+        tableHTML += `<th>${i}</th>`;
+      }
+      tableHTML += '</tr>';
+
+      for (let i = startNum; i <= endNum; i++) {
+        tableHTML += `<tr><th>${i}</th>`;
+        for (let j = startNum; j <= endNum; j++) {
+          tableHTML += `<td>${i * j}</td>`;
+        }
+        tableHTML += '</tr>';
+      }
+      tableHTML += '</table>';
+
+      document.getElementById('tableDiv').innerHTML = tableHTML;
+    }
+  </script>
+</body>
+</html>
